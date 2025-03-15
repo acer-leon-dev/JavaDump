@@ -1,14 +1,14 @@
 Compile:
 ```
-javac -d Bin Stats/Main.java
+javac -d Bin Source/Stats/Main.java
 ```
 
 Run:
 ```
-java -cp Bin Stats/Main
+java -cp Bin Source/Stats/Main
 ```
 
 Compile and run:
 ```
-javac -d Bin Stats/Main.java && java -cp Bin Stats/Main
+javac -d Bin Source/Stats/Main.java && java -cp Bin Source/Stats/Main
 ```
