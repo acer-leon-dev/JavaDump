@@ -1,4 +1,4 @@
-package Stats;
+package Source.Stats;
 
 public class Main {
 	public static void main(String[] args) {
@@ -6,6 +6,8 @@ public class Main {
         System.out.println("normalcdf(-1, 0, 1) = " + Double.toString(N.cdf(-1)));
         System.out.println("normalcdf(0, 0, 1) = " + Double.toString(N.cdf(0)));
         System.out.println("normalcdf(2, 0, 1) = " + Double.toString(N.cdf(2)));
+
+		System.out.println();
 
         BinomialDistribution B = new BinomialDistribution(20, 0.5);
         System.out.println("binompmf(3, 20, 0.5) = " + Double.toString(B.pmf(3)));

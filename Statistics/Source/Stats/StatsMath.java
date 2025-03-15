@@ -1,6 +1,5 @@
-package Stats;
-
-public class StatMath {
+package Source.Stats;
+public class StatsMath {
     // Calculates the factorial of `n`.
     public static long factorial(long n) {
         if (n == 0) {
@@ -16,7 +15,7 @@ public class StatMath {
     }
 
     // Calculates the binomial coefficient of `n` and `k`.
-    public static long binomial_coefficient(long n, long k) {
+    public static long binomialCoefficient(long n, long k) {
         return factorial(n) / (factorial(k) * factorial(n - k)); 
     }    
 
@@ -28,14 +27,16 @@ public class StatMath {
             return 0;
         }
         
-        double dtx = domain / n;
+        double dx = domain / n;
         double area = 0;
-        for (double x1 = a; x1 < b; x1 += dtx) {
-            double x2 = x1 + dtx;
+        double max = Math.max(a, b);
+        
+        for (double x1 = Math.min(a, b); x1 < max; x1 += dx) {
+            double x2 = x1 + dx;
             area += (f.invoke(x1) + f.invoke(x2));
         }
 
-        area *= dtx / 2;
+        area *= dx / 2;
 
         // Account for negative integral
         if (a > b) {
@@ -64,6 +65,7 @@ public class StatMath {
     
     // Calculates the error function of `z`.
     public static double erf(double z) {
+        // System.out.println(2 / Math.sqrt(Math.PI) * integral((double t) -> Math.pow(Math.E, -(t * t)), -999, z));
         return 2 / Math.sqrt(Math.PI) * integral((double t) -> Math.pow(Math.E, -(t * t)), 0, z);
     }
 }
