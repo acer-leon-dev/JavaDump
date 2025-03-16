@@ -1,5 +1,5 @@
 package src.stats;
-public class StatsMath {
+public final class StatsMath {
     private StatsMath() {
 
     }
@@ -17,17 +17,12 @@ public class StatsMath {
         return result;
     }
 
-    // Calculates the factorial of `n`.
+    // Calculates the factorial of n.
     public static long factorial(long n) {
         return (long)product(1, n, (double x) -> { return x; });        
     }
 
-    // Calculates the binomial coefficient of `n` and `k`.
-    public static long binomialCoefficient(long n, long k) {
-        return factorial(n) / (factorial(k) * factorial(n - k)); 
-    }    
-
-    // Approximates the integral of `f` from `a` to `b` with `n` subintervals (using trapezoidal rule).
+    // Approximates the integral of f from a to b with n subintervals (using trapezoidal rule).
     public static double integral(double a, double b, DoubleFunctionDouble f, long n) {
         double domain = Math.abs(b - a);
 
@@ -54,7 +49,7 @@ public class StatsMath {
         return area;
     }
 
-    // Calls `integral` with a default subinterval count for `n`.
+    // Calls integral with a default subinterval count for n.
     public static double integral(double a, double b, DoubleFunctionDouble f) {
         double domain = Math.abs(b - a);
         double n;
@@ -70,14 +65,19 @@ public class StatsMath {
 
         return integral(a, b, f, (int)Math.ceil(n));
     }
-    
-    // Calculates the error function of `z`.
+
+    // Calculates the error function of z.
     public static double erf(double z) {
         return 2 / Math.sqrt(Math.PI) * integral(0, z, (double t) -> Math.pow(Math.E, -(t * t)), 1000);
     }
 
+    // Calculates the binomial coefficient of n and k.
+    public static long binomialCoefficient(long n, long k) {
+        return factorial(n) / (factorial(k) * factorial(n - k)); 
+    }
+
     public static double betaFunction(double z1, double z2) {
-        return integral(0, 1, (double t) -> Math.pow(t, z1-1) * Math.pow((1-t), z2-1), 1000);
+        return integral(0, 1, (double t) -> Math.pow(t, z1-1) * Math.pow((1-t), z2-1), 100);
     }
 
     public static double incompleteBetaFunction(double x, long a, long b) {

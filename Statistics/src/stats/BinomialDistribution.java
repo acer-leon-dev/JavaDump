@@ -11,7 +11,7 @@ public class BinomialDistribution {
         this.p = p;
     }
 
-    public long getTrials() {
+    public long getNTrials() {
         return n;
     }
     
@@ -19,21 +19,16 @@ public class BinomialDistribution {
         return p;
     }
 
-    // Calculates the probability mass function of a binomial distribution with parameters `k`, 'n', 'p'.   
-    public static double pmf(long k, long n, double p) {
-        return StatsMath.binomialCoefficient(n, k) * Math.pow(p, k) * Math.pow((1 - p), n - k);
-    }
-
     public double pmf(long k) {
-        return pmf(k, n, p);
-    }
-
-    public static double cdf(long k, long n, double p) {
-        return StatsMath.regularizedIncompleteBetaFunction(1 - p, n - k, k + 1);
+        return Dist.binomialpmf(k, this.n, this.p);
     }
 
     public double cdf(long k) {
-        return cdf(k, n, p);
+        return Dist.binomialcdf(k, this.n, this.p);
+    }
+
+    public long simulateProcess() {
+        return Dist.simulateBernoulliProcess(n, p);
     }
     
 }    

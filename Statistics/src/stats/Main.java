@@ -21,15 +21,15 @@ public class Main {
 		System.out.println();
 
         BinomialDistribution B = new BinomialDistribution(20, 0.5);
-        System.out.println("binompmf(3, 20, 0.5) = " + doubleToPercent(B.pmf(3)));
-        System.out.println("binompmf(10, 20, 0.5) = " + doubleToPercent(B.pmf(10)));
-        System.out.println("binompmf(16, 20, 0.5) = " + doubleToPercent(B.pmf(16)));
+        System.out.println("binomialpmf(3, 20, 0.5) = " + doubleToPercent(B.pmf(3)));
+        System.out.println("binomialpmf(10, 20, 0.5) = " + doubleToPercent(B.pmf(10)));
+        System.out.println("binomialpmf(16, 20, 0.5) = " + doubleToPercent(B.pmf(16)));
 
         System.out.println();
 
-        System.out.println("binomcdf(3, 20, 0.5) = " + doubleToPercent(B.cdf(3)));
-        System.out.println("binomcdf(10, 20, 0.5) = " + doubleToPercent(B.cdf(10)));
-        System.out.println("binomcdf(16, 20, 0.5) = " + doubleToPercent(B.cdf(16)));
+        System.out.println("binomialcdf(3, 20, 0.5) = " + doubleToPercent(B.cdf(3)));
+        System.out.println("binomialcdf(10, 20, 0.5) = " + doubleToPercent(B.cdf(10)));
+        System.out.println("binomialcdf(16, 20, 0.5) = " + doubleToPercent(B.cdf(16)));
 
 	}
 }
