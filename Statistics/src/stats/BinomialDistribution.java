@@ -1,4 +1,4 @@
-package Source.Stats;
+package src.stats;
 
 public class BinomialDistribution {
     // Number of trials
@@ -26,6 +26,14 @@ public class BinomialDistribution {
 
     public double pmf(long k) {
         return pmf(k, n, p);
+    }
+
+    public static double cdf(long k, long n, double p) {
+        return StatsMath.regularizedIncompleteBetaFunction(1 - p, n - k, k + 1);
+    }
+
+    public double cdf(long k) {
+        return cdf(k, n, p);
     }
     
 }    

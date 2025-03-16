@@ -1,4 +1,4 @@
-package Source.Stats;
+package src.stats;
 
 public class NormalDistribution {
     // Mean
@@ -27,5 +27,14 @@ public class NormalDistribution {
     // Calculates the cdf at z with this dist's parameters.
     public double cdf(double z) {
         return cdf(z, mu, sigma);
+    }
+
+    public static double pdf(double z, double mu, double sigma) {
+        double variance = sigma * sigma;
+        return Math.pow(Math.E, -Math.pow(z - mu, 2) / (2 * variance)) / Math.sqrt(2 * Math.PI * variance);
+    }
+
+    public double pdf(double z) {
+        return pdf(z, mu, sigma);
     }
 }
