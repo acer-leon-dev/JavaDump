@@ -1,17 +1,25 @@
 package src.stats;
 public class StatsMath {
-    // Calculates the factorial of `n`.
-    public static long factorial(long n) {
-        if (n == 0) {
+    private StatsMath() {
+
+    }
+
+    public static double product(long n, long k, DoubleFunctionDouble f) {
+        if (k < n) {
             return 1;
         }
-        
-        long v = 1;
-        for (long i = 2; i <= n; i++) {
-            v *= i;
+
+        double result = f.invoke(n);
+        for (n++; n <= k; n++) {
+            result *= f.invoke(n);
         }
-        
-        return v;
+
+        return result;
+    }
+
+    // Calculates the factorial of `n`.
+    public static long factorial(long n) {
+        return (long)product(1, n, (double x) -> { return x; });        
     }
 
     // Calculates the binomial coefficient of `n` and `k`.
