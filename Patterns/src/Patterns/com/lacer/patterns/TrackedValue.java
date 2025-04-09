@@ -1,15 +1,24 @@
 package com.lacer.patterns;
 
 public class TrackedValue<T> {
-    T current_value;
-    T last_value = null;
+    private T current_value;
+    private T last_value = null;
 
+    /**
+     * Constructs a current_value to T's default value.
+     */
     TrackedValue() {}
 
+    /**
+     * Constructs a TrackedValue, setting current_value to value.
+     */
     TrackedValue(T value) {
         current_value = value;
     }
 
+    /**
+     * Sets current_value to value.
+     */
     void set(T value) {
         last_value = current_value;
         current_value = value;
