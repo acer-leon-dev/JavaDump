@@ -3,7 +3,7 @@ package com.lacer.patterns;
 /**
  * A specialization of TrackValue for the Double class.
  */
-public class TrackedDouble extends TrackedValue<Double> {
+public class TrackedDouble extends Tracked<Double> {
     /**
      * Constructs a new TrackDouble
      */

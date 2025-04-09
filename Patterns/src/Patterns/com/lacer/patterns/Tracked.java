@@ -4,7 +4,7 @@ package com.lacer.patterns;
  * A container for a value whose previous value (prior to reassignment) is stored each time it is set.
  * @param <T>
  */
-public class TrackedValue<T> {
+public class Tracked<T> {
     // The current value stored
     protected T current_value;
     // The last value stored before assignment
@@ -13,14 +13,14 @@ public class TrackedValue<T> {
     /**
      * Constructs a new TrackedValue of type T, initializing the current value to null.
      */
-    public TrackedValue() {
+    public Tracked() {
         current_value = null;
     }
 
     /**
      * Constructs a TrackedValue of type T, initializing the current value to value.
      */
-    public TrackedValue(T value) {
+    public Tracked(T value) {
         current_value = value;
     }
 
