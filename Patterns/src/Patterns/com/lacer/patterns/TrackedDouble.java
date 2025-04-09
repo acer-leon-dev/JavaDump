@@ -1,7 +1,8 @@
 package com.lacer.patterns;
 
 /**
- * A specialization of TrackValue for the Double class.
+ * A specialization of TrackedValue for the Double class.
+ * Enables constructing and setting a TrackedValue<Double> from a primitive double.
  */
 public class TrackedDouble extends Tracked<Double> {
     /**
@@ -20,7 +21,9 @@ public class TrackedDouble extends Tracked<Double> {
     }
 
     /**
-     * Sets the current value to value.
+     * Sets the current value from a given value.
+     *
+     * @param value The value to assign from.
      */
     public void set(double value) {
         last_value = current_value;

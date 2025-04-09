@@ -1,4 +1,2 @@
-# Stats
-Testing Java in the terminal.
-
-💀
+# Statistics
+Statistical distributions in Java
