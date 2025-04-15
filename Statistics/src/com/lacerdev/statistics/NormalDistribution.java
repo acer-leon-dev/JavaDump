@@ -1,4 +1,4 @@
-package src.stats;
+package com.lacerdev.statistics;
 
 public class NormalDistribution {
     // Mean
@@ -17,7 +17,7 @@ public class NormalDistribution {
     }
 
     /**
-     * Returns mu.
+     * Returns the mean of this normal distribution.
      * @return this.mu
      */
     public double getMean() {
@@ -25,11 +25,28 @@ public class NormalDistribution {
     }
 
     /**
-     * Returns sigma.
+     * Returns the standard deviation of this normal distribution.
      * @return this.sigma
      */
     public double getStandardDeviation() {
         return sigma;
+    }
+
+    /**
+     * Sets the mean of this normal distribution.
+     */
+    public void setMean(double mu) {
+        this.mu = mu;
+    }
+
+    /**
+     * Sets the standard deviation of this normal distribution.
+     */
+    public void setStandardDeviation(double sigma) {
+        if (sigma < 0) {
+            throw new NegativeParameterException("Error: Parameter \"sigma\" (standard deviation) for distribution \"normal_distribution\" cannot be negative.");
+        }
+        this.sigma = sigma;
     }
     
     /**

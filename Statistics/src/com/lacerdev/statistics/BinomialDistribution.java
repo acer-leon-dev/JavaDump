@@ -1,4 +1,4 @@
-package src.stats;
+package com.lacerdev.statistics;
 
 public class BinomialDistribution {
     // Number of trials
@@ -17,7 +17,7 @@ public class BinomialDistribution {
     /**
      * Returns n.
      */
-    public long getNTrials() {
+    public long getNumberOfTrials() {
         return n;
     }
 
@@ -26,6 +26,28 @@ public class BinomialDistribution {
      */
     public double getProbability() {
         return p;
+    }
+
+    /**
+     * Sets n to a given positive integer.
+     */
+    public void setNumberOfTrials(long n) {
+        if (n < 0) {
+            throw new NegativeParameterException("Error: Parameter \"number of trials\" (n) for distribution \"binomial_distribution\" cannot be negative");
+        }
+
+        this.n = n;
+    }
+
+    /**
+     * Returns p.
+     */
+    public void setProbability(double p) {
+        if (p < 0.0) {
+            throw new NegativeParameterException("Error: Parameter \"probability\" (p) for distribution \"binomial_distribution\" cannot be negative.");
+        }
+
+        this.p = p;
     }
 
     /**

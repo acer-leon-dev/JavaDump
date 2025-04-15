@@ -1,12 +1,10 @@
-package src.stats;
+package com.lacerdev.statistics;
 
 public final class Dist {
     /**
      * Private constructor.
      */
-    private Dist() {
-
-    }
+    private Dist() {}
 
     /**
     * Calculates the cumulative distribution function of a normaldist with parameters z, mu, sigma.
@@ -27,6 +25,9 @@ public final class Dist {
     * Calculates the probability mass function of a binomial distribution with parameters k, n, p.
     */
     public static double binomialpmf(long k, long n, double p) {
+        if (k < 0) {
+            return 0;
+        }
         return StatsMath.binomialCoefficient(n, k) * Math.pow(p, k) * Math.pow((1 - p), n - k);
     }
 
@@ -34,6 +35,9 @@ public final class Dist {
     * Calculates the cumulative distribution function of a binomial distribution with parameters k, n, p.
     */
     public static double binomialcdf(long k, long n, double p) {
+        if (k < 0) {
+            return 0;
+        }
         return StatsMath.regularizedIncompleteBetaFunction(1 - p, n - k, k + 1);
     }
 
