@@ -1,4 +1,5 @@
 package com.lacerdev.statistics;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -22,7 +23,7 @@ public class NumberInputParser {
      * Result:<br>
      * [1 2 3 4 5 6 7 8 9 10 11 12 13 15 16.54 17. .18]
      */
-    List<Double> readNumbersAsList() {
+    List<Double> readNumbersAsList() throws IOException {
         // Reading from standard input
         SystemInputBufferedReader reader = new SystemInputBufferedReader();
         // Match all numbers
@@ -36,7 +37,7 @@ public class NumberInputParser {
         return numbers;
     }
 
-    Double readDouble() {
+    Double readDouble() throws IOException {
         // Reading from standard input
         SystemInputBufferedReader reader = new SystemInputBufferedReader();
         // Match all numbers

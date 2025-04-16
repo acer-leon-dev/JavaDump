@@ -18,25 +18,14 @@ public class SystemInputBufferedReader {
      * An EOF can be entered in the terminal with the shortcut `ctrl + d` (Linux) or `ctrl + z` (Windows).
      * @return A string containing the content that was read, including newlines for each line.
      */
-    public String readUntilEOF() {
+    public String readUntilEOF() throws IOException {
         StringBuilder result = new StringBuilder();
-
         String line;
-        try {
-            while ((line = reader.readLine()) != null) {
-                result.append(line).append('\n');
-            }
-        } catch (IOException e) {
-            System.err.println("Failed to read input");
-        } finally {
-            try {
-                reader.close();
-            } catch (IOException e) {
-                System.err.println("Failed to close file");
-            }
+        while ((line = reader.readLine()) != null) {
+            result.append(line).append('\n');
         }
 
-        result.deleteCharAt(result.length()-1);
+        result.deleteCharAt(result.length() - 1);
         return result.toString();
     }
 
