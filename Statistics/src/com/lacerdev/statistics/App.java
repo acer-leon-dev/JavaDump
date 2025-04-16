@@ -1,7 +1,7 @@
 package com.lacerdev.statistics;
 import java.io.IOException;
 
-public class UI {
+public class App {
     boolean shouldEnd = false;
 
     void start() {
@@ -26,11 +26,10 @@ public class UI {
     }
 
     void printGeneralOptions() {
-        String s =
-            """
-            1. Lists
-            2. Distributions
-            0. Exit""";
+        StringBuilder sb = new StringBuilder();
+        sb.append("1. Lists\n");
+        sb.append("2. Distributions\n");
+        sb.append("0. Exit\n");
         System.out.println(s);
     }
 

@@ -6,7 +6,8 @@ public class Main {
     }
 
 	public static void main(String[] args) {
-        UI app = new UI();
+        Messages.initialize();
+        App app = new App();
         app.start();
 //        NormalDistribution N = new NormalDistribution(0, 1);
 //

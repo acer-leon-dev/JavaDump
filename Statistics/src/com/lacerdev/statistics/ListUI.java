@@ -4,30 +4,22 @@ import java.io.IOException;
 import java.util.List;
 
 public class ListUI {
-    private ListTable listTable = new ListTable();
+    private ListTable table = new ListTable();
 
     ListUI(ListTable table) {
-        listTable = table;
+        this.table = table;
     }
     
     enum ListOption {
-        SET("Set", "set"),
-        APPEND("Append", "append to"),
-        DELETE("Delete", "delete"),
-        BACK(null, null),
-        NONE(null, null);
-
-        public final String bareInfiniteForm;
-        public final String infinitiveForm;
-        ListOption(String bareInfiniteForm, String infinitiveForm) {
-            this.bareInfiniteForm = bareInfiniteForm;
-            this.infinitiveForm = infinitiveForm;
-        }
+        SET,
+        APPEND,
+        DELETE,
+        BACK,
+        NONE;
     }
 
     ListOption getListOption() throws IOException {
         char optionChar = (char)System.in.read();
-        
         int optionID = optionChar - '0';
         return switch (optionID) {
             case 1 -> ListOption.SET;
@@ -41,100 +33,111 @@ public class ListUI {
         };
     }
 
-    public void promptListModifiction(String[] args) throws IOException {
-        System.out.println(
-            """
-            1. Set
-            2. Append
-            3. Delete
-            0. Back""");
-
-        ListOption option = getListOption();
-        switch (option) {
+    public void promptListModification(String[] args) throws IOException {
+        System.out.printf("1. Set\n2. Append\n3. Delete\n0. Back\n");
+        switch (getListOption()) {
             case ListOption.SET:
                 promptSet();
-                break;
+                return;
             case ListOption.APPEND:
                 promptAppend();
-                break;
+                return;
             case ListOption.DELETE:
                 promptDelete();
-                break;
+                return;
             case ListOption.BACK:
                 return;
             default:
                 System.err.println();
                 return;
         }
-
-//        if (option) {
-//
-//        }
     }
 
     private String queryListName() throws IOException {
-        StringBuilder errorMessage = new StringBuilder();
-        boolean error = false;
+        final SystemInputBufferedReader reader = new SystemInputBufferedReader();
+        final String name = reader.readLine();
 
-        SystemInputBufferedReader reader = new SystemInputBufferedReader();
-        String name = reader.readLine();
-        if (!listTable.hasList(name)) {
-            error = true;
-            errorMessage
-                .append("Error: List ")
-                .append(name)
-                .append(" does not exist.\n");
-        }
-        
-        if (error) {
-            errorMessage.append("Couldn't find list. Going back to previous command.\n");
-            System.err.print(errorMessage);
+        if (!table.hasList(name)) {
+            System.err.printf("Error: List %s does not exist\n", name);
+            System.err.printf("Couldn't find list. Going back to previous command.\n");
             return null;
         }
 
         return name;
     }
 
+    private List<Double> queryListNumbers() throws IOException {
+        NumberInputParser parser = new NumberInputParser();
+        return parser.readNumbersAsList();
+    }
+
     private boolean promptSet() throws IOException {
+        // Get list name
+        System.out.printf("Name of list to set:\n> ");
         String name = queryListName();
 
+        // Null check
         if (name == null) {
-            System.err.println();
             return false;
         }
-
-        List<Double> oldList = listTable.getList(name);
+        
+        List<Double> oldList = table.getList(name);
+        System.out.printf("Enter data to set (ctrl + d (Linux) or ctrl + z (Windows) to stop):\n");
         oldList = queryList();
         return true;
     }
 
-    private List<Double> queryList() throws IOException {
-        NumberInputParser parser = new NumberInputParser();
-        return parser.readNumbersAsList();
-    }
     
     private boolean promptAppend() throws IOException {
+        // Get list name
+        System.out.printf("Name of list to append data to:\n> ");
         String name = queryListName();
+
+        // Null check
         if (name == null) {
             return false;
         }
 
-        List<Double> list = listTable.getList(name);
-        return true;
+        // Add new stuff to list
+        return table.getList(name).addAll(queryListNumbers());
     }
 
     private boolean promptDelete() throws IOException {
+        // Get list name
+        System.out.printf("Name of list to delete:\n> ");
         String name = queryListName();
+
+        // Null check
         if (name == null) {
             return false;
         }
 
-        if (!listTable.deleteList(name)) {
-            System.err.println("Error: Could not delete list.");
+        if (!table.deleteList(name)) {
+            System.err.printf("Error: Could not delete list.\n");
             return false;
         }
 
         return true;
+    }
+
+    private printList(String name) {
+        list = table.getList(name);
+        StringBuilder()
+
+        int numColumns = Math.floor(table.length() / 10);
+        for (int i = 0; i < numColumns; i++) {
+            System.out.printf("\t")
+            for (int j = 0; j < 10; j++) {
+                list.at(i * 10 + j);
+            }
+        }
+
+        System.out.printf("\t");
+        for (int i = 0; i < table.length() % 10; i++) {
+            System.out(list.at(numColumns * 10 + i));
+        }
+
+        
     }
     
 }
